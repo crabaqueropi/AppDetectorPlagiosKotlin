@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.web.WebView?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <AnchorPane prefHeight="64.0" prefWidth="1200.0" style="-fx-background-color: #245ab3;" AnchorPane.bottomAnchor="536.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox prefHeight="71.0" prefWidth="1200.0" AnchorPane.bottomAnchor="131.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Separator prefHeight="17.0" prefWidth="450.0" />
+                  <ImageView fx:id="iconDos" fitHeight="66.0" fitWidth="50.0" onMouseClicked="#btnDosArchivos" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/icon-two.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Separator prefWidth="200.0" />
+                  <ImageView fx:id="iconVarios" fitHeight="66.0" fitWidth="50.0" onMouseClicked="#btnVariosArchivos" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/icon-many.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Separator prefHeight="9.0" prefWidth="450.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Separator>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="panelDosArchivos" layoutX="1.0" layoutY="60.0" prefHeight="540.0" prefWidth="1200.0" style="-fx-background-color: #245ab3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+         <children>
+            <Text layoutX="57.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Archivo 1: " />
+            <Text layoutX="57.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Archivo 2: " />
+            <Button fx:id="btnSeleccionarArchivo1" layoutX="173.0" layoutY="54.0" mnemonicParsing="false" onMouseClicked="#btnseleccionarArchivoUno" text="Seleccionar Archivo 1" />
+            <Button layoutX="173.0" layoutY="90.0" mnemonicParsing="false" onMouseClicked="#btnseleccionarArchivoDos" text="Seleccionar Archivo 2" />
+            <Label fx:id="labArchivo1" layoutX="325.0" layoutY="58.0" text="Ningun archivo seleccionado" textFill="WHITE" />
+            <WebView fx:id="webViewId1" layoutX="12.0" layoutY="142.0" prefHeight="257.0" prefWidth="580.0" />
+            <WebView fx:id="webViewId2" layoutX="600.0" layoutY="142.0" prefHeight="257.0" prefWidth="580.0" />
+            <Label fx:id="labArchivo2" layoutX="325.0" layoutY="94.0" text="Ningun archivo seleccionado" textFill="WHITE" />
+            <Button layoutX="751.0" layoutY="78.0" mnemonicParsing="false" onMouseClicked="#btnVerificarPlagio" text="Verificar Plagio" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="panelVariosArchivos" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #245ab3;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+         <children>
+            <Button fx:id="btnMultiplesArchivos" layoutX="77.0" layoutY="148.0" mnemonicParsing="false" onMouseClicked="#btnSeleccionarMultiplesArchivos" text="Seleccionar Archivos" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
