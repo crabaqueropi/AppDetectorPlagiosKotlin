@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
    <children>
       <AnchorPane prefHeight="64.0" prefWidth="1200.0" style="-fx-background-color: #245ab3;" AnchorPane.bottomAnchor="536.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -51,7 +51,7 @@
             <Button fx:id="btnSeleccionarArchivo1" layoutX="173.0" layoutY="54.0" mnemonicParsing="false" onMouseClicked="#btnseleccionarArchivoUno" text="Seleccionar Archivo 1" />
             <Button layoutX="173.0" layoutY="90.0" mnemonicParsing="false" onMouseClicked="#btnseleccionarArchivoDos" text="Seleccionar Archivo 2" />
             <Label fx:id="labArchivo1" layoutX="325.0" layoutY="58.0" text="Ningun archivo seleccionado" textFill="WHITE" />
-            <WebView fx:id="webViewId1" layoutX="12.0" layoutY="142.0" prefHeight="257.0" prefWidth="580.0" />
+            <WebView fx:id="webViewId1" layoutX="12.0" layoutY="142.0" onScroll="#onScrollUno" prefHeight="257.0" prefWidth="580.0" />
             <WebView fx:id="webViewId2" layoutX="600.0" layoutY="142.0" prefHeight="257.0" prefWidth="580.0" />
             <Label fx:id="labArchivo2" layoutX="325.0" layoutY="94.0" text="Ningun archivo seleccionado" textFill="WHITE" />
             <Button layoutX="751.0" layoutY="78.0" mnemonicParsing="false" onMouseClicked="#btnVerificarPlagio" text="Verificar Plagio" />
