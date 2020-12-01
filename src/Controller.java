@@ -2,15 +2,18 @@ import com.sun.glass.ui.CommonDialogs;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.Token;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -18,6 +21,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
 import org.antlr.v4.runtime.*;
 
 import javax.swing.*;
@@ -37,6 +41,23 @@ public class Controller {
     public WebView webViewId1;
     @FXML
     public WebView webViewId2;
+    @FXML
+    public ImageView imagenLista1;
+    @FXML
+    public ImageView imagenLista2;
+    @FXML
+    public ImageView imagenPrincipal;
+    @FXML
+    public Text TextoPrincipal;
+    @FXML
+    public RadioButton radioBtnBaja;
+    public RadioButton radioBtnMedia;
+    public RadioButton radioBtnAlta;
+
+    @FXML
+    private Label nombreArchivoUno;
+    @FXML
+    private Label nombreArchivoDos;
 
     @FXML
     private AnchorPane panelDosArchivos;
@@ -72,7 +93,7 @@ public class Controller {
                     "<body>";
 
     private final String plantillaCoincidencia =
-                    "<h3>Coincidencia ${numCoincidencia}</h3>" +
+            "<h3>Coincidencia ${numCoincidencia}</h3>" +
                     "<form><textarea id=\"${codeID}\" name=\"${codeID}\">\n" +
                     "${code}" +
                     "</textarea></form>" +
@@ -87,7 +108,7 @@ public class Controller {
                     "</script>";
 
     private final String plantillaFinal =
-                    "</body>" +
+            "</body>" +
                     "</html>";
 
 
@@ -98,6 +119,8 @@ public class Controller {
     public void setCodeDos(String newHtmlCode) {
         webViewId2.getEngine().loadContent(newHtmlCode);
     }
+
+
 
     @FXML
     void btnDosArchivos(MouseEvent event) {
@@ -126,7 +149,17 @@ public class Controller {
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Archivos Kotlin", "*.kt"));
         file1 = fc.showOpenDialog(null);
         if (file1 != null) {
+            webViewId1.setVisible(false);
+            webViewId2.setVisible(false);
+            nombreArchivoUno.setVisible(false);
+            nombreArchivoDos.setVisible(false);
+            imagenPrincipal.setVisible(true);
+            TextoPrincipal.setVisible(true);
+
             labArchivo1.setText("Archivo seleccionado: " + file1.getName());
+            nombreArchivoUno.setText(file1.getName());
+
+            imagenLista1.setVisible(true);
 
             BufferedReader br = new BufferedReader(new FileReader(file1));
 
@@ -143,7 +176,18 @@ public class Controller {
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Archivos Kotlin", "*.kt"));
         file2 = fc.showOpenDialog(null);
         if (file2 != null) {
+            webViewId1.setVisible(false);
+            webViewId2.setVisible(false);
+            nombreArchivoUno.setVisible(false);
+            nombreArchivoDos.setVisible(false);
+            imagenPrincipal.setVisible(true);
+            TextoPrincipal.setVisible(true);
+
+
             labArchivo2.setText("Archivo seleccionado: " + file2.getName());
+            nombreArchivoDos.setText(file2.getName());
+
+            imagenLista2.setVisible(true);
 
             BufferedReader br = new BufferedReader(new FileReader(file2));
 
@@ -221,8 +265,8 @@ public class Controller {
 
                             auxCoincidencia = plantillaCoincidencia;
                             auxCoincidencia = auxCoincidencia.replace("${numCoincidencia}", Integer.toString(coincidencias));
-                            auxCoincidencia = auxCoincidencia.replace("${codeID}", ("code"+coincidencias));
-                            for (int j = listaTokens1.get(resp).getLine()-1; j < listaTokens1.get(resp + rigurosidad).getLine(); j++){
+                            auxCoincidencia = auxCoincidencia.replace("${codeID}", ("code" + coincidencias));
+                            for (int j = listaTokens1.get(resp).getLine() - 1; j < listaTokens1.get(resp + rigurosidad).getLine(); j++) {
                                 auxCodigo += lineasCodigUno[j] + "\n";
                             }
                             auxCoincidencia = auxCoincidencia.replace("${code}", auxCodigo);
@@ -232,8 +276,8 @@ public class Controller {
 
                             auxCoincidencia = plantillaCoincidencia;
                             auxCoincidencia = auxCoincidencia.replace("${numCoincidencia}", Integer.toString(coincidencias));
-                            auxCoincidencia = auxCoincidencia.replace("${codeID}", ("code"+coincidencias));
-                            for (int k = listaTokens2.get(i - rigurosidad + 1).getLine()-1; k < listaTokens2.get(i).getLine(); k++){
+                            auxCoincidencia = auxCoincidencia.replace("${codeID}", ("code" + coincidencias));
+                            for (int k = listaTokens2.get(i - rigurosidad + 1).getLine() - 1; k < listaTokens2.get(i).getLine(); k++) {
                                 auxCodigo += lineasCodigDos[k] + "\n";
                             }
                             auxCoincidencia = auxCoincidencia.replace("${code}", auxCodigo);
@@ -241,15 +285,15 @@ public class Controller {
                             htmlCodigoDos += auxCoincidencia;
                             auxCodigo = "";
 
-                            System.out.println("Entrada 1");
-                            System.out.println("Desde: Fila " + listaTokens1.get(resp).getLine() + "\tColumna " + listaTokens1.get(resp).getCharPositionInLine());
-                            System.out.println("Hasta: Fila " + listaTokens1.get(resp + rigurosidad).getLine() + "\tColumna " + listaTokens1.get(resp + rigurosidad).getCharPositionInLine());
-
-                            System.out.println("Entrada 2");
-                            System.out.println("Desde: Fila " + listaTokens2.get(i - rigurosidad + 1).getLine() + "\tColumna " + listaTokens1.get(i - rigurosidad + 1).getCharPositionInLine());
-                            System.out.println("Hasta: Fila " + listaTokens2.get(i).getLine() + "\tColumna " + listaTokens1.get(i).getCharPositionInLine());
-
-                            System.out.println("*************************************************");
+//                            System.out.println("Entrada 1");
+//                            System.out.println("Desde: Fila " + listaTokens1.get(resp).getLine() + "\tColumna " + listaTokens1.get(resp).getCharPositionInLine());
+//                            System.out.println("Hasta: Fila " + listaTokens1.get(resp + rigurosidad).getLine() + "\tColumna " + listaTokens1.get(resp + rigurosidad).getCharPositionInLine());
+//
+//                            System.out.println("Entrada 2");
+//                            System.out.println("Desde: Fila " + listaTokens2.get(i - rigurosidad + 1).getLine() + "\tColumna " + listaTokens1.get(i - rigurosidad + 1).getCharPositionInLine());
+//                            System.out.println("Hasta: Fila " + listaTokens2.get(i).getLine() + "\tColumna " + listaTokens1.get(i).getCharPositionInLine());
+//
+//                            System.out.println("*************************************************");
                         }
                     }
                 }
@@ -259,6 +303,14 @@ public class Controller {
 
                 setCodeUno(htmlCodigoUno);
                 setCodeDos(htmlCodigoDos);
+
+                webViewId1.setVisible(true);
+                webViewId2.setVisible(true);
+                nombreArchivoUno.setVisible(true);
+                nombreArchivoDos.setVisible(true);
+                imagenPrincipal.setVisible(false);
+                TextoPrincipal.setVisible(false);
+
             } catch (
                     Exception e) {
                 System.err.println("Error (Test): " + e);
@@ -269,7 +321,7 @@ public class Controller {
 
     @FXML
     void onScrollUno(ScrollEvent event) {
-        
+
     }
 }
 

@@ -3,11 +3,13 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.web.WebView?>
 
@@ -42,19 +44,110 @@
                   </Separator>
                </children>
             </HBox>
+            <Text fill="WHITE" layoutX="201.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Comparar dos Archivos">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="756.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Comparar un Archivos con Muchos">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="panelDosArchivos" layoutX="1.0" layoutY="60.0" prefHeight="540.0" prefWidth="1200.0" style="-fx-background-color: #245ab3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
          <children>
-            <Text layoutX="57.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Archivo 1: " />
-            <Text layoutX="57.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Archivo 2: " />
-            <Button fx:id="btnSeleccionarArchivo1" layoutX="173.0" layoutY="54.0" mnemonicParsing="false" onMouseClicked="#btnseleccionarArchivoUno" text="Seleccionar Archivo 1" />
-            <Button layoutX="173.0" layoutY="90.0" mnemonicParsing="false" onMouseClicked="#btnseleccionarArchivoDos" text="Seleccionar Archivo 2" />
-            <Label fx:id="labArchivo1" layoutX="325.0" layoutY="58.0" text="Ningun archivo seleccionado" textFill="WHITE" />
-            <WebView fx:id="webViewId1" layoutX="12.0" layoutY="142.0" onScroll="#onScrollUno" prefHeight="257.0" prefWidth="580.0" />
-            <WebView fx:id="webViewId2" layoutX="600.0" layoutY="142.0" prefHeight="257.0" prefWidth="580.0" />
-            <Label fx:id="labArchivo2" layoutX="325.0" layoutY="94.0" text="Ningun archivo seleccionado" textFill="WHITE" />
-            <Button layoutX="751.0" layoutY="78.0" mnemonicParsing="false" onMouseClicked="#btnVerificarPlagio" text="Verificar Plagio" />
+            <Label fx:id="labArchivo1" layoutX="342.0" layoutY="36.0" text="Ningun archivo seleccionado" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <WebView fx:id="webViewId1" layoutX="12.0" layoutY="195.0" onScroll="#onScrollUno" prefHeight="331.0" prefWidth="580.0" visible="false" AnchorPane.bottomAnchor="14.0" AnchorPane.topAnchor="190.0" />
+            <WebView fx:id="webViewId2" layoutX="606.0" layoutY="142.0" prefHeight="257.0" prefWidth="580.0" visible="false" AnchorPane.bottomAnchor="14.0" AnchorPane.topAnchor="190.0" />
+            <Label fx:id="labArchivo2" layoutX="342.0" layoutY="95.0" text="Ningun archivo seleccionado" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <ImageView fx:id="imagenCargar1" fitHeight="150.0" fitWidth="52.0" layoutX="81.0" layoutY="19.0" onMouseClicked="#btnseleccionarArchivoUno" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@resources/cargarArchivo.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imagenCargar2" fitHeight="150.0" fitWidth="52.0" layoutX="81.0" layoutY="79.0" onMouseClicked="#btnseleccionarArchivoDos" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@resources/cargarArchivo.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="52.0" layoutX="923.0" layoutY="53.0" onMouseClicked="#btnVerificarPlagio" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@resources/VerificarPlagio.png" />
+               </image>
+            </ImageView>
+            <Text fill="WHITE" layoutX="972.0" layoutY="87.0" onMouseClicked="#btnVerificarPlagio" strokeType="OUTSIDE" strokeWidth="0.0" text="Verificar Plagio">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <Label fx:id="labArchivo11" layoutX="141.0" layoutY="32.0" onMouseClicked="#btnseleccionarArchivoUno" text="Seleccionar Archivo 1" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="labArchivo111" layoutX="141.0" layoutY="92.0" onMouseClicked="#btnseleccionarArchivoDos" text="Seleccionar Archivo 2" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="imagenPrincipal" fitHeight="150.0" fitWidth="100.0" layoutX="295.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@resources/Principal.png" />
+               </image>
+            </ImageView>
+            <Text fx:id="TextoPrincipal" fill="WHITE" layoutX="407.0" layoutY="316.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Verificador Plagio Kotlin">
+               <font>
+                  <Font size="48.0" />
+               </font>
+            </Text>
+            <ImageView fx:id="imagenLista1" fitHeight="150.0" fitWidth="52.0" layoutX="81.0" layoutY="19.0" onMouseClicked="#btnseleccionarArchivoUno" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@resources/ArchivoCargado.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imagenLista2" fitHeight="150.0" fitWidth="52.0" layoutX="81.0" layoutY="79.0" onMouseClicked="#btnseleccionarArchivoDos" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@resources/ArchivoCargado.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="nombreArchivoUno" layoutX="29.0" layoutY="150.0" onMouseClicked="#btnseleccionarArchivoDos" text="nombreArchivoUno" textFill="WHITE" visible="false">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="nombreArchivoDos" layoutX="627.0" layoutY="150.0" onMouseClicked="#btnseleccionarArchivoDos" text="nombreArchivoDos" textFill="WHITE" visible="false">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="682.0" layoutY="23.0" text="Rigurosidad" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <RadioButton fx:id="radioBtnAlta" layoutX="683.0" layoutY="109.0" mnemonicParsing="false" text="Alta" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </RadioButton>
+            <RadioButton fx:id="radioBtnMedia" layoutX="682.0" layoutY="85.0" mnemonicParsing="false" text="Media" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </RadioButton>
+            <RadioButton fx:id="radioBtnBaja" layoutX="682.0" layoutY="61.0" mnemonicParsing="false" text="Baja" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </RadioButton>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="panelVariosArchivos" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #245ab3;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
