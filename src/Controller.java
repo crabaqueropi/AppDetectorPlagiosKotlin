@@ -8,16 +8,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.Token;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -31,8 +29,14 @@ public class Controller {
     public FileChooser fc = new FileChooser();
     public File file1;
     public File file2;
+    public List<File> files;
+    static public List<String> codigosCompletos = new ArrayList<>();
+
     public String codigoCompletoUno = "";
     public String codigoCompletoDos = "";
+    public int rigurosidadBaja = 200;
+    public int rigurosidadMedia = 100;
+    public int rigurosidadAlta = 50;
     @FXML
     public ImageView iconVarios;
     @FXML
@@ -51,23 +55,54 @@ public class Controller {
     public Text TextoPrincipal;
     @FXML
     public RadioButton radioBtnBaja;
+    @FXML
     public RadioButton radioBtnMedia;
+    @FXML
     public RadioButton radioBtnAlta;
-
+    @FXML
+    public Line linea1;
+    @FXML
+    public Line linea2;
     @FXML
     private Label nombreArchivoUno;
     @FXML
     private Label nombreArchivoDos;
-
     @FXML
     private AnchorPane panelDosArchivos;
     @FXML
     private AnchorPane panelVariosArchivos;
-
     @FXML
     private Label labArchivo1;
     @FXML
     private Label labArchivo2;
+
+    // segundo panel
+    @FXML
+    public WebView webViewId11;
+    @FXML
+    public WebView webViewId21;
+    @FXML
+    private Label nombreArchivoUno1;
+    @FXML
+    private Label nombreArchivosSeleccionados;
+    @FXML
+    public ImageView imagenPrincipal1;
+    @FXML
+    public Text TextoPrincipal1;
+    @FXML
+    private Label labVariosArchivos;
+    @FXML
+    public ImageView imagenLista11;
+    @FXML
+    public ImageView imagenLista21;
+    @FXML
+    private Label labArchivo12;
+    @FXML
+    public RadioButton radioBtnBaja1;
+    @FXML
+    public RadioButton radioBtnMedia1;
+    @FXML
+    public RadioButton radioBtnAlta1;
 
     private final String plantillaInicio =
             "<!doctype html>" +
@@ -107,6 +142,21 @@ public class Controller {
                     "  });" +
                     "</script>";
 
+    private final String plantillaCoincidenciaPanel2 =
+            "<h3>${nombreArchivo} - Coincidencia ${numCoincidencia}</h3>" +
+                    "<form><textarea id=\"${codeID}\" name=\"${codeID}\">\n" +
+                    "${code}" +
+                    "</textarea></form>" +
+                    "<script>" +
+                    "  var editor = CodeMirror.fromTextArea(document.getElementById(\"${codeID}\"), {" +
+                    "    lineNumbers: true," +
+                    "    firstLineNumber: ${primerNumLinea}," +
+                    "    readOnly: true," +
+                    "    matchBrackets: true," +
+                    "    mode: \"text/x-kotlin\"" +
+                    "  });" +
+                    "</script>";
+
     private final String plantillaFinal =
             "</body>" +
                     "</html>";
@@ -120,27 +170,82 @@ public class Controller {
         webViewId2.getEngine().loadContent(newHtmlCode);
     }
 
+    public void setCodeUnoPanel2(String newHtmlCode) {
+        webViewId11.getEngine().loadContent(newHtmlCode);
+    }
+
+    public void setCodeDosPanel2(String newHtmlCode) {
+        webViewId21.getEngine().loadContent(newHtmlCode);
+    }
 
 
     @FXML
     void btnDosArchivos(MouseEvent event) {
         panelDosArchivos.setVisible(true);
         panelVariosArchivos.setVisible(false);
+        linea1.setVisible(true);
+        linea2.setVisible(false);
     }
 
     @FXML
     void btnVariosArchivos(MouseEvent event) {
         panelDosArchivos.setVisible(false);
         panelVariosArchivos.setVisible(true);
+        linea1.setVisible(false);
+        linea2.setVisible(true);
     }
 
     @FXML
-    void btnSeleccionarMultiplesArchivos(MouseEvent event) {
-        FileChooser fc = new FileChooser();
+    void btnSeleccionarMultiplesArchivos(MouseEvent event) throws IOException {
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Archivos Kotlin", "*.kt"));
-        List<File> f = fc.showOpenMultipleDialog(null);
-        for (File file : f) {
-            System.out.println(file.getAbsolutePath());
+        files = fc.showOpenMultipleDialog(null);
+        for (File file : files) {
+            //System.out.println(file.getAbsolutePath());
+            webViewId11.setVisible(false);
+            webViewId21.setVisible(false);
+            nombreArchivoUno1.setVisible(false);
+            nombreArchivosSeleccionados.setVisible(false);
+            imagenPrincipal1.setVisible(true);
+            TextoPrincipal1.setVisible(true);
+
+            labVariosArchivos.setText("Archivos seleccionados: " + files.size());
+
+            imagenLista21.setVisible(true);
+
+            BufferedReader br = new BufferedReader(new FileReader(file));
+
+            String st;
+            String codigoCompleto = "";
+            while ((st = br.readLine()) != null)
+                codigoCompleto += st + "\n";
+
+            codigosCompletos.add(codigoCompleto);
+        }
+    }
+
+    @FXML
+    void btnseleccionarArchivoUnoPanel2(MouseEvent event) throws IOException {
+        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Archivos Kotlin", "*.kt"));
+        file1 = fc.showOpenDialog(null);
+        if (file1 != null) {
+            webViewId11.setVisible(false);
+            webViewId21.setVisible(false);
+            nombreArchivoUno1.setVisible(false);
+            nombreArchivosSeleccionados.setVisible(false);
+            imagenPrincipal1.setVisible(true);
+            TextoPrincipal1.setVisible(true);
+
+            labArchivo12.setText("Archivo seleccionado: " + file1.getName());
+            nombreArchivoUno1.setText(file1.getName());
+
+            imagenLista11.setVisible(true);
+
+            BufferedReader br = new BufferedReader(new FileReader(file1));
+
+            String st;
+            codigoCompletoUno = "";
+            while ((st = br.readLine()) != null)
+                codigoCompletoUno += st + "\n";
         }
     }
 
@@ -164,10 +269,9 @@ public class Controller {
             BufferedReader br = new BufferedReader(new FileReader(file1));
 
             String st;
+            codigoCompletoUno = "";
             while ((st = br.readLine()) != null)
                 codigoCompletoUno += st + "\n";
-
-
         }
     }
 
@@ -192,6 +296,7 @@ public class Controller {
             BufferedReader br = new BufferedReader(new FileReader(file2));
 
             String st;
+            codigoCompletoDos = "";
             while ((st = br.readLine()) != null)
                 codigoCompletoDos += st + "\n";
 
@@ -208,6 +313,9 @@ public class Controller {
             alert.showAndWait();
         } else {
             try {
+                webViewId1.getEngine().loadContent(""); //limpiar webview
+                webViewId2.getEngine().loadContent("");
+
                 KotlinLexer lexer1;
                 KotlinLexer lexer2;
 
@@ -234,7 +342,17 @@ public class Controller {
                     //System.out.println(token.getType() + "--" + token.getText());
                 }
 
-                int rigurosidad = 40;
+                int rigurosidad = rigurosidadBaja;
+
+                if (radioBtnBaja.isSelected()) {
+                    rigurosidad = rigurosidadBaja;
+                } else if (radioBtnMedia.isSelected()) {
+                    rigurosidad = rigurosidadMedia;
+                } else if (radioBtnAlta.isSelected()) {
+                    rigurosidad = rigurosidadAlta;
+                }
+
+
 
                 String[] lineasCodigUno = codigoCompletoUno.split("\n");
                 String[] lineasCodigDos = codigoCompletoDos.split("\n");
@@ -320,8 +438,136 @@ public class Controller {
     }
 
     @FXML
-    void onScrollUno(ScrollEvent event) {
+    void btnVerificarPlagioPanel2(MouseEvent event) throws IOException {
+        if (file1 == null || files == null) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Archivos faltantes");
+            alert.setHeaderText(null);
+            alert.setContentText("Debe seleccionar los archivos a verificar.");
+            alert.showAndWait();
+        } else {
+            try {
+                webViewId11.getEngine().loadContent(""); //limpiar webview
+                webViewId21.getEngine().loadContent("");
 
+                String htmlCodigoUno = plantillaInicio;
+                String htmlCodigoDos = plantillaInicio;
+                int contadorFiles = 0;
+
+                for (File file : files){
+                    //----------
+
+                    KotlinLexer lexer1;
+                    KotlinLexer lexer2;
+
+                    lexer1 = new KotlinLexer(CharStreams.fromFileName(file1.getAbsolutePath()));
+                    lexer2 = new KotlinLexer(CharStreams.fromFileName(file.getAbsolutePath()));
+
+                    List<Integer> listaTipoTokens1 = new ArrayList<>();
+                    List<Token> listaTokens1 = new ArrayList<>();
+                    for (Token token = lexer1.nextToken(); token.getType() != Token.EOF; token = lexer1.nextToken()) {
+                        if (token.getType() != 3 && token.getType() != 5) {
+                            listaTipoTokens1.add(token.getType());
+                            listaTokens1.add(token);
+                        }
+                        //System.out.println(token.getType() + "--" + token.getText());
+                    }
+
+                    List<Integer> listaTipoTokens2 = new ArrayList<>();
+                    List<Token> listaTokens2 = new ArrayList<>();
+                    for (Token token = lexer2.nextToken(); token.getType() != Token.EOF; token = lexer2.nextToken()) {
+                        if (token.getType() != 3 && token.getType() != 5) {
+                            listaTipoTokens2.add(token.getType());
+                            listaTokens2.add(token);
+                        }
+                        //System.out.println(token.getType() + "--" + token.getText());
+                    }
+
+                    int rigurosidad = rigurosidadBaja;
+
+                    if (radioBtnBaja1.isSelected()) {
+                        rigurosidad = rigurosidadBaja;
+                    } else if (radioBtnMedia1.isSelected()) {
+                        rigurosidad = rigurosidadMedia;
+                    } else if (radioBtnAlta1.isSelected()) {
+                        rigurosidad = rigurosidadAlta;
+                    }
+
+
+
+                    String[] lineasCodigUno = codigoCompletoUno.split("\n");
+                    String[] lineasCodigDos = codigosCompletos.get(contadorFiles).split("\n");
+
+                    String auxCoincidencia = "";
+                    String auxCodigo = "";
+                    int coincidencias = 0;
+
+                    List<Integer> listaAux = new ArrayList<>();
+                    int contador = 0;
+
+                    for (int i = 0; i < listaTipoTokens2.size(); i++) {
+                        if (contador < rigurosidad) {
+                            listaAux.add(listaTipoTokens2.get(i));
+                            contador++;
+                        } else {
+                            contador = 0;
+                            listaAux.clear();
+                        }
+
+                        if (contador == rigurosidad) {
+                            int resp = Collections.indexOfSubList(listaTipoTokens1, listaAux);
+                            if (resp != -1) {
+                                coincidencias++;
+
+                                auxCoincidencia = plantillaCoincidenciaPanel2;
+                                auxCoincidencia = auxCoincidencia.replace("${nombreArchivo}", "Con: " + file.getName());
+                                auxCoincidencia = auxCoincidencia.replace("${numCoincidencia}", Integer.toString(coincidencias));
+                                auxCoincidencia = auxCoincidencia.replace("${codeID}", ("code" + contadorFiles + coincidencias));
+                                for (int j = listaTokens1.get(resp).getLine() - 1; j < listaTokens1.get(resp + rigurosidad).getLine(); j++) {
+                                    auxCodigo += lineasCodigUno[j] + "\n";
+                                }
+                                auxCoincidencia = auxCoincidencia.replace("${code}", auxCodigo);
+                                auxCoincidencia = auxCoincidencia.replace("${primerNumLinea}", Integer.toString(listaTokens1.get(resp).getLine()));
+                                htmlCodigoUno += auxCoincidencia;
+                                auxCodigo = "";
+
+                                auxCoincidencia = plantillaCoincidenciaPanel2;
+                                auxCoincidencia = auxCoincidencia.replace("${nombreArchivo}", file.getName());
+                                auxCoincidencia = auxCoincidencia.replace("${numCoincidencia}", Integer.toString(coincidencias));
+                                auxCoincidencia = auxCoincidencia.replace("${codeID}", ("code" + contadorFiles + coincidencias));
+                                for (int k = listaTokens2.get(i - rigurosidad + 1).getLine() - 1; k < listaTokens2.get(i).getLine(); k++) {
+                                    auxCodigo += lineasCodigDos[k] + "\n";
+                                }
+                                auxCoincidencia = auxCoincidencia.replace("${code}", auxCodigo);
+                                auxCoincidencia = auxCoincidencia.replace("${primerNumLinea}", Integer.toString(listaTokens2.get(i - rigurosidad + 1).getLine()));
+                                htmlCodigoDos += auxCoincidencia;
+                                auxCodigo = "";
+                            }
+                        }
+                    }
+                    contadorFiles++;
+                    //--------------
+                }
+
+                htmlCodigoUno += plantillaFinal;
+                htmlCodigoDos += plantillaFinal;
+
+                setCodeUnoPanel2(htmlCodigoUno);
+                setCodeDosPanel2(htmlCodigoDos);
+
+                webViewId11.setVisible(true);
+                webViewId21.setVisible(true);
+                nombreArchivoUno1.setVisible(true);
+                nombreArchivosSeleccionados.setVisible(true);
+                imagenPrincipal1.setVisible(false);
+                TextoPrincipal1.setVisible(false);
+
+            } catch (
+                    Exception e) {
+                System.err.println("Error (Test): " + e);
+            }
+
+        }
     }
 }
 
