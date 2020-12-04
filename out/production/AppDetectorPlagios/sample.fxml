@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.ToggleGroup?>
@@ -74,17 +75,17 @@
       </AnchorPane>
       <AnchorPane fx:id="panelDosArchivos" layoutX="1.0" layoutY="60.0" prefHeight="540.0" prefWidth="1200.0" style="-fx-background-color: #245ab3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
          <children>
-            <Label fx:id="labArchivo1" layoutX="342.0" layoutY="36.0" text="Ningun archivo seleccionado" textFill="WHITE">
+            <Label fx:id="labArchivo1" layoutX="342.0" layoutY="36.0" prefHeight="20.0" prefWidth="300.0" text="Ningun archivo seleccionado" textFill="WHITE" AnchorPane.bottomAnchor="484.0" AnchorPane.leftAnchor="342.0" AnchorPane.rightAnchor="558.0" AnchorPane.topAnchor="36.0">
                <font>
                   <Font size="14.0" />
                </font></Label>
             <WebView fx:id="webViewId1" layoutX="12.0" layoutY="195.0" prefHeight="331.0" prefWidth="580.0" visible="false" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="608.0" AnchorPane.topAnchor="190.0" />
             <WebView fx:id="webViewId2" layoutX="606.0" layoutY="190.0" prefHeight="257.0" prefWidth="580.0" visible="false" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="606.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="190.0" />
-            <Label fx:id="labArchivo2" layoutX="342.0" layoutY="95.0" text="Ningun archivo seleccionado" textFill="WHITE">
+            <Label fx:id="labArchivo2" layoutX="342.0" layoutY="95.0" prefHeight="20.0" prefWidth="300.0" text="Ningun archivo seleccionado" textFill="WHITE" AnchorPane.bottomAnchor="425.0" AnchorPane.leftAnchor="342.0" AnchorPane.rightAnchor="558.0" AnchorPane.topAnchor="95.0">
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <ImageView fx:id="imagenCargar1" fitHeight="150.0" fitWidth="52.0" layoutX="81.0" layoutY="19.0" onMouseClicked="#btnseleccionarArchivoUno" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imagenCargar1" fitHeight="150.0" fitWidth="52.0" layoutX="81.0" layoutY="19.0" onMouseClicked="#btnseleccionarArchivoUno" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="469.0" AnchorPane.leftAnchor="81.0" AnchorPane.rightAnchor="1067.0" AnchorPane.topAnchor="19.0">
                <image>
                   <Image url="@resources/cargarArchivo.png" />
                </image>
@@ -92,7 +93,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <ImageView fx:id="imagenCargar2" fitHeight="150.0" fitWidth="52.0" layoutX="81.0" layoutY="79.0" onMouseClicked="#btnseleccionarArchivoDos" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imagenCargar2" fitHeight="150.0" fitWidth="52.0" layoutX="81.0" layoutY="79.0" onMouseClicked="#btnseleccionarArchivoDos" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="409.0" AnchorPane.leftAnchor="81.0" AnchorPane.rightAnchor="1067.0" AnchorPane.topAnchor="79.0">
                <image>
                   <Image url="@resources/cargarArchivo.png" />
                </image>
@@ -100,7 +101,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="52.0" layoutX="923.0" layoutY="53.0" onMouseClicked="#btnVerificarPlagio" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="150.0" fitWidth="52.0" layoutX="923.0" layoutY="53.0" onMouseClicked="#btnVerificarPlagio" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="435.0" AnchorPane.leftAnchor="923.0" AnchorPane.rightAnchor="225.0" AnchorPane.topAnchor="53.0">
                <image>
                   <Image url="@resources/VerificarPlagio.png" />
                </image>
@@ -108,7 +109,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <Text fill="WHITE" layoutX="972.0" layoutY="87.0" onMouseClicked="#btnVerificarPlagio" strokeType="OUTSIDE" strokeWidth="0.0" text="Verificar Plagio">
+            <Text fill="WHITE" layoutX="972.0" layoutY="87.0" onMouseClicked="#btnVerificarPlagio" strokeType="OUTSIDE" strokeWidth="0.0" text="Verificar Plagio" AnchorPane.bottomAnchor="446.9765625" AnchorPane.leftAnchor="971.625" AnchorPane.rightAnchor="69.375" AnchorPane.topAnchor="61.0234375">
                <font>
                   <Font size="24.0" />
                </font>
@@ -116,7 +117,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Text>
-            <Label fx:id="labArchivo11" layoutX="141.0" layoutY="32.0" onMouseClicked="#btnseleccionarArchivoUno" text="Seleccionar Archivo 1" textFill="WHITE">
+            <Label fx:id="labArchivo11" layoutX="141.0" layoutY="32.0" onMouseClicked="#btnseleccionarArchivoUno" text="Seleccionar Archivo 1" textFill="WHITE" AnchorPane.bottomAnchor="481.0" AnchorPane.leftAnchor="141.0" AnchorPane.rightAnchor="889.0" AnchorPane.topAnchor="32.0">
                <font>
                   <Font size="18.0" />
                </font>
@@ -124,7 +125,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <Label fx:id="labArchivo111" layoutX="141.0" layoutY="92.0" onMouseClicked="#btnseleccionarArchivoDos" text="Seleccionar Archivo 2" textFill="WHITE">
+            <Label fx:id="labArchivo111" layoutX="141.0" layoutY="92.0" onMouseClicked="#btnseleccionarArchivoDos" text="Seleccionar Archivo 2" textFill="WHITE" AnchorPane.bottomAnchor="421.0" AnchorPane.leftAnchor="141.0" AnchorPane.rightAnchor="889.0" AnchorPane.topAnchor="92.0">
                <font>
                   <Font size="18.0" />
                </font>
@@ -132,22 +133,22 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <ImageView fx:id="imagenPrincipal" fitHeight="150.0" fitWidth="100.0" layoutX="295.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imagenPrincipal" fitHeight="150.0" fitWidth="100.0" layoutX="295.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="193.0" AnchorPane.leftAnchor="295.0" AnchorPane.rightAnchor="805.0" AnchorPane.topAnchor="247.0">
                <image>
                   <Image url="@resources/Principal.png" />
                </image>
             </ImageView>
-            <Text fx:id="TextoPrincipal" fill="WHITE" layoutX="407.0" layoutY="316.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Verificador Plagio Kotlin" AnchorPane.topAnchor="264.203125">
+            <Text fx:id="TextoPrincipal" fill="WHITE" layoutX="407.0" layoutY="316.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Verificador Plagio Kotlin" AnchorPane.bottomAnchor="211.953125" AnchorPane.leftAnchor="406.4375" AnchorPane.rightAnchor="283.5625" AnchorPane.topAnchor="264.203125">
                <font>
                   <Font size="48.0" />
                </font>
             </Text>
-            <ImageView fx:id="imagenLista1" fitHeight="150.0" fitWidth="52.0" layoutX="81.0" layoutY="19.0" onMouseClicked="#btnseleccionarArchivoUno" pickOnBounds="true" preserveRatio="true" visible="false">
+            <ImageView fx:id="imagenLista1" fitHeight="150.0" fitWidth="52.0" layoutX="81.0" layoutY="19.0" onMouseClicked="#btnseleccionarArchivoUno" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="469.0" AnchorPane.leftAnchor="81.0" AnchorPane.rightAnchor="1067.0" AnchorPane.topAnchor="19.0">
                <image>
                   <Image url="@resources/ArchivoCargado.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="imagenLista2" fitHeight="150.0" fitWidth="52.0" layoutX="81.0" layoutY="79.0" onMouseClicked="#btnseleccionarArchivoDos" pickOnBounds="true" preserveRatio="true" visible="false">
+            <ImageView fx:id="imagenLista2" fitHeight="150.0" fitWidth="52.0" layoutX="81.0" layoutY="79.0" onMouseClicked="#btnseleccionarArchivoDos" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="409.0" AnchorPane.leftAnchor="81.0" AnchorPane.rightAnchor="1067.0" AnchorPane.topAnchor="79.0">
                <image>
                   <Image url="@resources/ArchivoCargado.png" />
                </image>
@@ -162,12 +163,12 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label layoutX="682.0" layoutY="23.0" text="Rigurosidad" textFill="WHITE">
+            <Label layoutX="682.0" layoutY="23.0" text="Rigurosidad" textFill="WHITE" AnchorPane.bottomAnchor="490.0" AnchorPane.leftAnchor="682.0" AnchorPane.rightAnchor="422.0" AnchorPane.topAnchor="23.0">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <RadioButton fx:id="radioBtnAlta" layoutX="683.0" layoutY="109.0" mnemonicParsing="false" text="Alta" textFill="WHITE">
+            <RadioButton fx:id="radioBtnAlta" layoutX="683.0" layoutY="109.0" mnemonicParsing="false" text="Alta" textFill="WHITE" AnchorPane.bottomAnchor="411.0" AnchorPane.leftAnchor="683.0" AnchorPane.rightAnchor="467.0" AnchorPane.topAnchor="109.0">
                <font>
                   <Font size="14.0" />
                </font>
@@ -175,33 +176,34 @@
                   <ToggleGroup fx:id="rigurosidad" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="radioBtnMedia" layoutX="682.0" layoutY="85.0" mnemonicParsing="false" text="Media" textFill="WHITE" toggleGroup="$rigurosidad">
+            <RadioButton fx:id="radioBtnMedia" layoutX="682.0" layoutY="85.0" mnemonicParsing="false" text="Media" textFill="WHITE" toggleGroup="$rigurosidad" AnchorPane.bottomAnchor="435.0" AnchorPane.leftAnchor="682.0" AnchorPane.rightAnchor="454.0" AnchorPane.topAnchor="85.0">
                <font>
                   <Font size="14.0" />
                </font>
             </RadioButton>
-            <RadioButton fx:id="radioBtnBaja" layoutX="682.0" layoutY="61.0" mnemonicParsing="false" selected="true" text="Baja" textFill="WHITE" toggleGroup="$rigurosidad">
+            <RadioButton fx:id="radioBtnBaja" layoutX="682.0" layoutY="61.0" mnemonicParsing="false" selected="true" text="Baja" textFill="WHITE" toggleGroup="$rigurosidad" AnchorPane.bottomAnchor="459.0" AnchorPane.leftAnchor="682.0" AnchorPane.rightAnchor="467.0" AnchorPane.topAnchor="61.0">
                <font>
                   <Font size="14.0" />
                </font>
             </RadioButton>
+            <ProgressBar fx:id="barraProgreso" layoutX="923.0" layoutY="110.0" prefHeight="18.0" prefWidth="208.0" progress="0.0" visible="false" AnchorPane.bottomAnchor="412.0" AnchorPane.leftAnchor="923.0" AnchorPane.rightAnchor="69.0" AnchorPane.topAnchor="110.0" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="panelVariosArchivos" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #245ab3;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
          <children>
-            <Label fx:id="labArchivo12" layoutX="347.0" layoutY="37.0" text="Ningun archivo seleccionado" textFill="WHITE">
+            <Label fx:id="labArchivo12" layoutX="385.0" layoutY="36.0" prefHeight="20.0" prefWidth="271.0" text="Ningun archivo seleccionado" textFill="WHITE" AnchorPane.bottomAnchor="484.0" AnchorPane.leftAnchor="385.0" AnchorPane.rightAnchor="544.0" AnchorPane.topAnchor="36.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
             <WebView fx:id="webViewId11" prefHeight="331.0" prefWidth="580.0" visible="false" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="608.0" AnchorPane.topAnchor="190.0" />
             <WebView fx:id="webViewId21" prefHeight="257.0" prefWidth="580.0" visible="false" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="606.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="190.0" />
-            <Label fx:id="labVariosArchivos" layoutX="347.0" layoutY="103.0" text="Ningun archivo seleccionado" textFill="WHITE">
+            <Label fx:id="labVariosArchivos" layoutX="385.0" layoutY="95.0" prefHeight="20.0" prefWidth="271.0" text="Ningun archivo seleccionado" textFill="WHITE" AnchorPane.bottomAnchor="425.0" AnchorPane.leftAnchor="385.0" AnchorPane.rightAnchor="544.0" AnchorPane.topAnchor="95.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <ImageView fx:id="imagenCargar11" fitHeight="150.0" fitWidth="52.0" layoutX="51.0" layoutY="20.0" onMouseClicked="#btnseleccionarArchivoUnoPanel2" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imagenCargar11" fitHeight="150.0" fitWidth="52.0" layoutX="51.0" layoutY="20.0" onMouseClicked="#btnseleccionarArchivoUnoPanel2" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="469.0" AnchorPane.leftAnchor="81.0" AnchorPane.rightAnchor="1067.0" AnchorPane.topAnchor="19.0">
                <image>
                   <Image url="@resources/cargarArchivo.png" />
                </image>
@@ -209,7 +211,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <ImageView fx:id="imagenCargar21" fitHeight="150.0" fitWidth="52.0" layoutX="51.0" layoutY="87.0" onMouseClicked="#btnSeleccionarMultiplesArchivos" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imagenCargar21" fitHeight="150.0" fitWidth="52.0" layoutX="51.0" layoutY="87.0" onMouseClicked="#btnSeleccionarMultiplesArchivos" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="409.0" AnchorPane.leftAnchor="81.0" AnchorPane.rightAnchor="1067.0" AnchorPane.topAnchor="79.0">
                <image>
                   <Image url="@resources/cargarVariosArchivos.png" />
                </image>
@@ -217,7 +219,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="52.0" layoutX="978.0" layoutY="70.0" onMouseClicked="#btnVerificarPlagioPanel2" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="150.0" fitWidth="52.0" layoutX="870.0" layoutY="45.0" onMouseClicked="#btnVerificarPlagioPanel2" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="435.0" AnchorPane.leftAnchor="923.0" AnchorPane.rightAnchor="225.0" AnchorPane.topAnchor="53.0">
                <image>
                   <Image url="@resources/VerificarPlagio.png" />
                </image>
@@ -225,7 +227,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <Text fill="WHITE" layoutX="807.0" layoutY="105.0" onMouseClicked="#btnVerificarPlagioPanel2" strokeType="OUTSIDE" strokeWidth="0.0" text="Verificar Plagio">
+            <Text fill="WHITE" layoutX="935.0" layoutY="81.0" onMouseClicked="#btnVerificarPlagioPanel2" strokeType="OUTSIDE" strokeWidth="0.0" text="Verificar Plagio" AnchorPane.bottomAnchor="446.9765625" AnchorPane.leftAnchor="971.625" AnchorPane.rightAnchor="69.375" AnchorPane.topAnchor="61.0234375">
                <font>
                   <Font size="24.0" />
                </font>
@@ -233,7 +235,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Text>
-            <Label fx:id="labArchivo112" layoutX="104.0" layoutY="33.0" onMouseClicked="#btnseleccionarArchivoUnoPanel2" text="Seleccionar Archivo 1" textFill="WHITE">
+            <Label fx:id="labArchivo112" layoutX="104.0" layoutY="33.0" onMouseClicked="#btnseleccionarArchivoUnoPanel2" text="Seleccionar Archivo 1" textFill="WHITE" AnchorPane.bottomAnchor="481.0" AnchorPane.leftAnchor="141.0" AnchorPane.rightAnchor="889.0" AnchorPane.topAnchor="32.0">
                <font>
                   <Font size="18.0" />
                </font>
@@ -241,7 +243,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <Label fx:id="labArchivo1111" layoutX="104.0" layoutY="98.0" onMouseClicked="#btnSeleccionarMultiplesArchivos" text="Seleccionar Varios Archivos" textFill="WHITE">
+            <Label fx:id="labArchivo1111" layoutX="104.0" layoutY="98.0" onMouseClicked="#btnSeleccionarMultiplesArchivos" prefHeight="27.0" prefWidth="230.0" text="Seleccionar Varios Archivos" textFill="WHITE" AnchorPane.bottomAnchor="421.0" AnchorPane.leftAnchor="141.0" AnchorPane.rightAnchor="829.0" AnchorPane.topAnchor="92.0">
                <font>
                   <Font size="18.0" />
                </font>
@@ -249,22 +251,22 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <ImageView fx:id="imagenPrincipal1" fitHeight="150.0" fitWidth="100.0" layoutX="252.0" layoutY="274.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imagenPrincipal1" fitHeight="150.0" fitWidth="100.0" layoutX="252.0" layoutY="274.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="193.0" AnchorPane.leftAnchor="295.0" AnchorPane.rightAnchor="805.0" AnchorPane.topAnchor="247.0">
                <image>
                   <Image url="@resources/Principal.png" />
                </image>
             </ImageView>
-            <Text fx:id="TextoPrincipal1" fill="WHITE" layoutX="382.0" layoutY="344.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Verificador Plagio Kotlin">
+            <Text fx:id="TextoPrincipal1" fill="WHITE" layoutX="382.0" layoutY="344.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Verificador Plagio Kotlin" AnchorPane.bottomAnchor="211.953125" AnchorPane.leftAnchor="406.4375" AnchorPane.rightAnchor="284.125" AnchorPane.topAnchor="264.203125">
                <font>
                   <Font size="48.0" />
                </font>
             </Text>
-            <ImageView fx:id="imagenLista11" fitHeight="150.0" fitWidth="52.0" layoutX="51.0" layoutY="20.0" onMouseClicked="#btnseleccionarArchivoUno" pickOnBounds="true" preserveRatio="true" visible="false">
+            <ImageView fx:id="imagenLista11" fitHeight="150.0" fitWidth="52.0" layoutX="51.0" layoutY="20.0" onMouseClicked="#btnseleccionarArchivoUno" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="469.0" AnchorPane.leftAnchor="81.0">
                <image>
                   <Image url="@resources/ArchivoCargado.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="imagenLista21" fitHeight="150.0" fitWidth="52.0" layoutX="51.0" layoutY="87.0" onMouseClicked="#btnseleccionarArchivoDos" pickOnBounds="true" preserveRatio="true" visible="false">
+            <ImageView fx:id="imagenLista21" fitHeight="150.0" fitWidth="52.0" layoutX="51.0" layoutY="87.0" onMouseClicked="#btnseleccionarArchivoDos" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="409.0" AnchorPane.leftAnchor="81.0" AnchorPane.rightAnchor="1067.0" AnchorPane.topAnchor="79.0">
                <image>
                   <Image url="@resources/ArchivoCargado.png" />
                </image>
@@ -279,12 +281,12 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label layoutX="635.0" layoutY="20.0" text="Rigurosidad" textFill="WHITE">
+            <Label layoutX="635.0" layoutY="20.0" text="Rigurosidad" textFill="WHITE" AnchorPane.bottomAnchor="490.0" AnchorPane.leftAnchor="682.0" AnchorPane.rightAnchor="422.0" AnchorPane.topAnchor="23.0">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <RadioButton fx:id="radioBtnAlta1" layoutX="637.0" layoutY="93.0" mnemonicParsing="false" text="Alta" textFill="WHITE">
+            <RadioButton fx:id="radioBtnAlta1" layoutX="637.0" layoutY="93.0" mnemonicParsing="false" text="Alta" textFill="WHITE" AnchorPane.bottomAnchor="411.0" AnchorPane.leftAnchor="683.0" AnchorPane.rightAnchor="467.0" AnchorPane.topAnchor="109.0">
                <font>
                   <Font size="14.0" />
                </font>
@@ -292,16 +294,17 @@
                   <ToggleGroup fx:id="rigurosidadPanel2" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="radioBtnMedia1" layoutX="636.0" layoutY="69.0" mnemonicParsing="false" text="Media" textFill="WHITE" toggleGroup="$rigurosidadPanel2">
+            <RadioButton fx:id="radioBtnMedia1" layoutX="636.0" layoutY="69.0" mnemonicParsing="false" text="Media" textFill="WHITE" toggleGroup="$rigurosidadPanel2" AnchorPane.bottomAnchor="435.0" AnchorPane.leftAnchor="682.0" AnchorPane.rightAnchor="454.0" AnchorPane.topAnchor="85.0">
                <font>
                   <Font size="14.0" />
                </font>
             </RadioButton>
-            <RadioButton fx:id="radioBtnBaja1" layoutX="636.0" layoutY="47.0" mnemonicParsing="false" selected="true" text="Baja" textFill="WHITE" toggleGroup="$rigurosidadPanel2">
+            <RadioButton fx:id="radioBtnBaja1" layoutX="636.0" layoutY="47.0" mnemonicParsing="false" selected="true" text="Baja" textFill="WHITE" toggleGroup="$rigurosidadPanel2" AnchorPane.bottomAnchor="459.0" AnchorPane.leftAnchor="682.0" AnchorPane.rightAnchor="467.0" AnchorPane.topAnchor="61.0">
                <font>
                   <Font size="14.0" />
                </font>
             </RadioButton>
+            <ProgressBar fx:id="barraProgreso2" layoutX="879.0" layoutY="104.0" prefHeight="18.0" prefWidth="208.0" progress="0.0" visible="false" AnchorPane.bottomAnchor="412.0" AnchorPane.leftAnchor="923.0" AnchorPane.rightAnchor="69.0" AnchorPane.topAnchor="110.0" />
          </children>
       </AnchorPane>
    </children>

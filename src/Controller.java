@@ -1,19 +1,20 @@
 import com.sun.glass.ui.CommonDialogs;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ScrollBar;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
+import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.Token;
+import javafx.beans.value.ChangeListener;
+import javafx.concurrent.Worker.State;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -63,6 +64,10 @@ public class Controller {
     public Line linea1;
     @FXML
     public Line linea2;
+    @FXML
+    public ProgressBar barraProgreso;
+    @FXML
+    public ProgressBar barraProgreso2;
     @FXML
     private Label nombreArchivoUno;
     @FXML
@@ -164,6 +169,7 @@ public class Controller {
 
     public void setCodeUno(String newHtmlCode) {
         webViewId1.getEngine().loadContent(newHtmlCode);
+        ponerBarraProgreso(webViewId1.getEngine());
     }
 
     public void setCodeDos(String newHtmlCode) {
@@ -172,6 +178,7 @@ public class Controller {
 
     public void setCodeUnoPanel2(String newHtmlCode) {
         webViewId11.getEngine().loadContent(newHtmlCode);
+        ponerBarraProgresoPanel2(webViewId11.getEngine());
     }
 
     public void setCodeDosPanel2(String newHtmlCode) {
@@ -416,18 +423,26 @@ public class Controller {
                     }
                 }
 
-                htmlCodigoUno += plantillaFinal;
-                htmlCodigoDos += plantillaFinal;
+                if (coincidencias == 0){
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("No hay plagio!");
+                    alert.setHeaderText(null);
+                    alert.setContentText("No se encontró plagio en los documentos (con la rigurosidad escogida)");
+                    alert.showAndWait();
+                }else{
+                    htmlCodigoUno += plantillaFinal;
+                    htmlCodigoDos += plantillaFinal;
 
-                setCodeUno(htmlCodigoUno);
-                setCodeDos(htmlCodigoDos);
+                    setCodeUno(htmlCodigoUno);
+                    setCodeDos(htmlCodigoDos);
 
-                webViewId1.setVisible(true);
-                webViewId2.setVisible(true);
-                nombreArchivoUno.setVisible(true);
-                nombreArchivoDos.setVisible(true);
-                imagenPrincipal.setVisible(false);
-                TextoPrincipal.setVisible(false);
+                    webViewId1.setVisible(true);
+                    webViewId2.setVisible(true);
+                    nombreArchivoUno.setVisible(true);
+                    nombreArchivoDos.setVisible(true);
+                    imagenPrincipal.setVisible(false);
+                    TextoPrincipal.setVisible(false);
+                }
 
             } catch (
                     Exception e) {
@@ -435,6 +450,40 @@ public class Controller {
             }
 
         }
+    }
+
+    private void ponerBarraProgreso(WebEngine engine){
+        barraProgreso.setVisible(true);
+        barraProgreso.progressProperty().bind(engine.getLoadWorker().progressProperty());
+
+        engine.getLoadWorker().stateProperty().addListener(
+                new ChangeListener<State>() {
+                    @Override
+                    public void changed(ObservableValue<? extends State> ov, State oldValue, State newValue) {
+                        if (newValue == State.SUCCEEDED) {
+                            // hide progress bar then page is ready
+                            barraProgreso.setVisible(false);
+                        }
+                    }
+                });
+
+    }
+
+    private void ponerBarraProgresoPanel2(WebEngine engine){
+        barraProgreso2.setVisible(true);
+        barraProgreso2.progressProperty().bind(engine.getLoadWorker().progressProperty());
+
+        engine.getLoadWorker().stateProperty().addListener(
+                new ChangeListener<State>() {
+                    @Override
+                    public void changed(ObservableValue<? extends State> ov, State oldValue, State newValue) {
+                        if (newValue == State.SUCCEEDED) {
+                            // hide progress bar then page is ready
+                            barraProgreso2.setVisible(false);
+                        }
+                    }
+                });
+
     }
 
     @FXML
@@ -453,6 +502,8 @@ public class Controller {
                 String htmlCodigoUno = plantillaInicio;
                 String htmlCodigoDos = plantillaInicio;
                 int contadorFiles = 0;
+
+                int coincidenciasTotales = 0;
 
                 for (File file : files){
                     //----------
@@ -518,6 +569,7 @@ public class Controller {
                             int resp = Collections.indexOfSubList(listaTipoTokens1, listaAux);
                             if (resp != -1) {
                                 coincidencias++;
+                                coincidenciasTotales++;
 
                                 auxCoincidencia = plantillaCoincidenciaPanel2;
                                 auxCoincidencia = auxCoincidencia.replace("${nombreArchivo}", "Con: " + file.getName());
@@ -549,18 +601,26 @@ public class Controller {
                     //--------------
                 }
 
-                htmlCodigoUno += plantillaFinal;
-                htmlCodigoDos += plantillaFinal;
+                if (coincidenciasTotales == 0){
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("No hay plagio!");
+                    alert.setHeaderText(null);
+                    alert.setContentText("No se encontró plagio en los documentos (con la rigurosidad escogida)");
+                    alert.showAndWait();
+                }else{
+                    htmlCodigoUno += plantillaFinal;
+                    htmlCodigoDos += plantillaFinal;
 
-                setCodeUnoPanel2(htmlCodigoUno);
-                setCodeDosPanel2(htmlCodigoDos);
+                    setCodeUnoPanel2(htmlCodigoUno);
+                    setCodeDosPanel2(htmlCodigoDos);
 
-                webViewId11.setVisible(true);
-                webViewId21.setVisible(true);
-                nombreArchivoUno1.setVisible(true);
-                nombreArchivosSeleccionados.setVisible(true);
-                imagenPrincipal1.setVisible(false);
-                TextoPrincipal1.setVisible(false);
+                    webViewId11.setVisible(true);
+                    webViewId21.setVisible(true);
+                    nombreArchivoUno1.setVisible(true);
+                    nombreArchivosSeleccionados.setVisible(true);
+                    imagenPrincipal1.setVisible(false);
+                    TextoPrincipal1.setVisible(false);
+                }
 
             } catch (
                     Exception e) {
