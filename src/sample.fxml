@@ -61,7 +61,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Text>
-            <Text fill="WHITE" layoutX="756.0" layoutY="39.0" onMouseClicked="#btnVariosArchivos" strokeType="OUTSIDE" strokeWidth="0.0" text="Comparar un Archivos con Muchos">
+            <Text fill="WHITE" layoutX="756.0" layoutY="39.0" onMouseClicked="#btnVariosArchivos" strokeType="OUTSIDE" strokeWidth="0.0" text="Comparar un Archivo con Muchos">
                <font>
                   <Font size="24.0" />
                </font>
